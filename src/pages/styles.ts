@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const Main = styled.div`
-  /* height: calc(100vh - 5.5rem); */
-  height: 92%;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;

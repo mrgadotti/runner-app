@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,10 +15,6 @@ const Home: React.FC = () => {
   const handleChange = (event: SelectChangeEvent): void => {
     setType(event.target.value);
   };
-
-  useEffect(() => {
-    console.log(type);
-  }, [type]);
 
   return (
     <Main>
@@ -56,9 +52,125 @@ const Home: React.FC = () => {
               />
             </Box>
             <div style={{ marginTop: '20px' }}>
-              <Button variant='contained' size='medium'>
+              <Button
+                variant='contained'
+                size='medium'
+                onClick={() => {
+                  console.log('bt');
+                }}
+              >
                 Calcular
               </Button>
+            </div>
+            <div style={{ marginTop: '20px' }}>
+              <table
+                style={{
+                  border: '1px solid black',
+                  width: '100%',
+                  borderCollapse: 'collapse'
+                }}
+              >
+                <tr>
+                  <td
+                    style={{
+                      border: '1px solid #dddddd',
+                      padding: '8px',
+                      textAlign: 'right'
+                    }}
+                  >
+                    00:00
+                  </td>
+                  <th
+                    style={{
+                      border: '1px solid #dddddd',
+                      padding: '8px',
+                      textAlign: 'center'
+                    }}
+                  >
+                    min/km
+                  </th>
+                </tr>
+                <tr>
+                  <td
+                    style={{
+                      border: '1px solid #dddddd',
+                      padding: '8px',
+                      textAlign: 'right'
+                    }}
+                  >
+                    0.0
+                  </td>
+                  <th
+                    style={{
+                      border: '1px solid #dddddd',
+                      padding: '8px',
+                      textAlign: 'center'
+                    }}
+                  >
+                    km/h
+                  </th>
+                </tr>
+                <tr>
+                  <td
+                    style={{
+                      border: '1px solid #dddddd',
+                      padding: '8px',
+                      textAlign: 'right'
+                    }}
+                  >
+                    00:00
+                  </td>
+                  <th
+                    style={{
+                      border: '1px solid #dddddd',
+                      padding: '8px',
+                      textAlign: 'center'
+                    }}
+                  >
+                    min/mi
+                  </th>
+                </tr>
+                <tr>
+                  <td
+                    style={{
+                      border: '1px solid #dddddd',
+                      padding: '8px',
+                      textAlign: 'right'
+                    }}
+                  >
+                    0.0
+                  </td>
+                  <th
+                    style={{
+                      border: '1px solid #dddddd',
+                      padding: '8px',
+                      textAlign: 'center'
+                    }}
+                  >
+                    mi/min
+                  </th>
+                </tr>
+                <tr>
+                  <td
+                    style={{
+                      border: '1px solid #dddddd',
+                      padding: '8px',
+                      textAlign: 'right'
+                    }}
+                  >
+                    00:00
+                  </td>
+                  <th
+                    style={{
+                      border: '1px solid #dddddd',
+                      padding: '8px',
+                      textAlign: 'center'
+                    }}
+                  >
+                    min/400m
+                  </th>
+                </tr>
+              </table>
             </div>
           </>
         )}

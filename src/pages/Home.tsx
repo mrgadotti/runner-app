@@ -5,15 +5,22 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { type SelectChangeEvent } from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import Table from '../components/Table';
 
 import { Main } from './styles';
 
 const Home: React.FC = () => {
   const [type, setType] = useState('pace');
+  const [inputTime, setInputTime] = useState('');
 
   const handleChange = (event: SelectChangeEvent): void => {
     setType(event.target.value);
+  };
+
+  const maskTime = (input: string): string => {
+    const numericInput = input.replace(/[^\d]/g, '');
+    const truncatedInput = numericInput.substring(0, 4);
+    return truncatedInput.replace(/(\d{2})(\d{2})/, '$1:$2');
   };
 
   return (
@@ -48,130 +55,14 @@ const Home: React.FC = () => {
                 label='Infome o Pace'
                 variant='outlined'
                 size='small'
-                placeholder='00:00:00'
+                placeholder='00:00'
+                onChange={e => {
+                  setInputTime(maskTime(e.target.value));
+                }}
+                value={inputTime}
               />
             </Box>
-            <div style={{ marginTop: '20px' }}>
-              <Button
-                variant='contained'
-                size='medium'
-                onClick={() => {
-                  console.log('bt');
-                }}
-              >
-                Calcular
-              </Button>
-            </div>
-            <div style={{ marginTop: '20px' }}>
-              <table
-                style={{
-                  border: '1px solid black',
-                  width: '100%',
-                  borderCollapse: 'collapse'
-                }}
-              >
-                <tr>
-                  <td
-                    style={{
-                      border: '1px solid #dddddd',
-                      padding: '8px',
-                      textAlign: 'right'
-                    }}
-                  >
-                    00:00
-                  </td>
-                  <th
-                    style={{
-                      border: '1px solid #dddddd',
-                      padding: '8px',
-                      textAlign: 'center'
-                    }}
-                  >
-                    min/km
-                  </th>
-                </tr>
-                <tr>
-                  <td
-                    style={{
-                      border: '1px solid #dddddd',
-                      padding: '8px',
-                      textAlign: 'right'
-                    }}
-                  >
-                    0.0
-                  </td>
-                  <th
-                    style={{
-                      border: '1px solid #dddddd',
-                      padding: '8px',
-                      textAlign: 'center'
-                    }}
-                  >
-                    km/h
-                  </th>
-                </tr>
-                <tr>
-                  <td
-                    style={{
-                      border: '1px solid #dddddd',
-                      padding: '8px',
-                      textAlign: 'right'
-                    }}
-                  >
-                    00:00
-                  </td>
-                  <th
-                    style={{
-                      border: '1px solid #dddddd',
-                      padding: '8px',
-                      textAlign: 'center'
-                    }}
-                  >
-                    min/mi
-                  </th>
-                </tr>
-                <tr>
-                  <td
-                    style={{
-                      border: '1px solid #dddddd',
-                      padding: '8px',
-                      textAlign: 'right'
-                    }}
-                  >
-                    0.0
-                  </td>
-                  <th
-                    style={{
-                      border: '1px solid #dddddd',
-                      padding: '8px',
-                      textAlign: 'center'
-                    }}
-                  >
-                    mi/min
-                  </th>
-                </tr>
-                <tr>
-                  <td
-                    style={{
-                      border: '1px solid #dddddd',
-                      padding: '8px',
-                      textAlign: 'right'
-                    }}
-                  >
-                    00:00
-                  </td>
-                  <th
-                    style={{
-                      border: '1px solid #dddddd',
-                      padding: '8px',
-                      textAlign: 'center'
-                    }}
-                  >
-                    min/400m
-                  </th>
-                </tr>
-              </table>
-            </div>
+            <Table type={0} value={inputTime}></Table>
           </>
         )}
         {type === 'vel' && <h2>Conversor de Velocidade</h2>}
